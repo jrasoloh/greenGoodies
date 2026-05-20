@@ -19,6 +19,7 @@
                 <p style="font-size: 12px; color: var(--color-muted); margin-top: -30px; margin-bottom: 40px;">Tous les champs sont obligatoires.</p>
 
                 {{ form_start(registrationForm) }}
+                <div style="color: red; margin-bottom: 15px;">{{ form_errors(registrationForm) }}</div>
 
                 {# Champ Nom #}
                 <div class="form-group">
@@ -68,8 +69,7 @@
                 {# Lien alternatif discret #}
                 <a href="{{ path('app_login') }}" class="auth-link">Déjà un compte ? Se connecter</a>
 
-                {# Désactive le rendu automatique du reste du formulaire car on a tout traité manuellement #}
-                {{ form_end(registrationForm, {'render_rest': false}) }}
+                {{ form_end(registrationForm) }}
             </div>
         </div>
 

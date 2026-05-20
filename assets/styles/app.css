@@ -19,6 +19,10 @@
     --cta-bg: #333333;
     --cta-text: #FFFFFF;
     --cta-height: 77px;
+
+    /* 🎯 Tokens Main Pages (Login, Register, Product Page) */
+    --btn-primary-bg: #565656;
+    --btn-primary-text: #FFFFFF;
 }
 
 /* Reset global */
@@ -313,8 +317,8 @@ header {
     justify-content: center;
     width: 100%;
     height: var(--cta-height);
-    background-color: var(--cta-bg);
-    color: var(--cta-text) !important;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text) !important;
     text-decoration: none;
     font-size: 14px;
     font-weight: 400;
@@ -478,7 +482,7 @@ footer {
 
 .auth-form-content label {
     font-size: 14px;
-    color: var(--color-text);
+    color: var(--color-muted);
     margin-bottom: 8px;
 }
 
@@ -491,7 +495,7 @@ footer {
     border: 1px solid #CCCCCC;
     padding: 0 16px;
     font-size: 14px;
-    color: var(--color-text);
+    color: var(--color-muted);
     background-color: transparent;
 }
 
@@ -507,7 +511,7 @@ footer {
     font-size: 14px;
     color: var(--color-muted);
     text-align: center;
-    text-decoration: none;
+    text-decoration: underline;
     display: block;
     width: 100%;
 }
@@ -526,14 +530,19 @@ footer {
 }
 
 .auth-form-content .form-check-input {
-    margin-right: 10px;
+    margin: 0 10px 0 0;
     height: 16px;
     width: 16px;
+    cursor: pointer;
 }
 
 .auth-form-content .form-check-label {
     font-size: 14px;
-    color: var(--color-text);
+    color: var(--color-muted);
+    line-height: 1;
+    padding-top: 2px;
+    cursor: pointer;
+    margin-bottom: 0;
 }
 
 /* Specific dimension overrides for auth container types based on provided dimensions */

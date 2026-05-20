@@ -7,9 +7,8 @@
     <section class="split-section" style="background-color: var(--bg-welcome);">
         <div class="split-container">
 
-            {# Panneau Gauche : 709px #}
+            {# Panneau Gauche #}
             <div class="split-text hero-left">
-                {# Bloc de texte contraint à 362px de large et centré dans les 4 directions #}
                 <div class="text-content-block">
                     <h1>Bienvenue</h1>
                     <p class="hero-paragraph">Découvrez notre univers de produits durables et éthiques pour une consommation responsable.</p>
@@ -17,7 +16,7 @@
                 </div>
             </div>
 
-            {# Panneau Droit : 731px #}
+            {# Panneau Droit #}
             <div class="split-image hero-right">
                 <img src="{{ asset('images/bienvenue.png') }}" alt="Affiche éco-responsable">
             </div>
@@ -38,20 +37,20 @@
                         {% endif %}
                     </div>
 
-                    {# 🎯 Le Frame 3 complet de Figma (218px) #}
+                    {# 🎯 Le Frame 3 #}
                     <div class="product-info">
 
-                        {# 🎯 Frame 4 : Bloc solidaire Titre + Description (gap 8px) #}
+                        {# 🎯 Frame 4 : Bloc solidaire Titre + Description #}
                         <div class="product-title-desc">
                             <h3>{{ product.name }}</h3>
                             <p class="short-desc">{{ product.shortDescription }}</p>
                         </div>
 
-                        {# Prix (séparé de 20px du dessus par le parent) #}
+                        {# Prix #}
                         <p class="price">{{ (product.price / 100)|number_format(2, ',', ' ') }}€</p>
 
-                        {# CTA_product_card (collé tout en bas du bloc de 218px) #}
-                        <a href="#" class="btn-link">Voir le produit</a>
+                        {# CTA_product_card #}
+                        <a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn-link">Voir le produit</a>
 
                     </div>
                 </article>

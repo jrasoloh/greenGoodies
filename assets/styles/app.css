@@ -327,7 +327,6 @@ header {
 /* Footer global */
 footer {
     background-color: var(--bg-footer);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .footer-wrapper {
@@ -339,4 +338,85 @@ footer {
     padding: 32px 89px;
     font-size: 14px;
     color: var(--color-text);
+}
+
+/* ==========================================================================
+   Page Détail Produit (Fiche Produit)
+   ========================================================================== */
+.product-detail-container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    margin-bottom: 221px;
+}
+
+.product-detail-image {
+    width: 734px;
+    height: 686px;
+    flex-shrink: 0;
+}
+
+.product-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Conteneur de droite miroir (686px de haut aussi) */
+.product-detail-info {
+    flex: 1;
+    height: 686px;
+    display: flex;
+    justify-content: center;
+}
+
+.product-detail-content {
+    width: 465px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+}
+
+.product-detail-content h1 {
+    font-size: 32px;
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.product-detail-price {
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--color-text);
+    margin-bottom: 48px;
+}
+
+.description-label {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--color-muted);
+    margin-bottom: 16px;
+}
+
+.product-description {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--color-text);
+}
+
+.product-description p {
+    margin-bottom: 16px;
+}
+
+.product-detail-content .btn-cta {
+    margin-top: auto;
+    width: 100%;
 }

@@ -66,6 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->orders = new ArrayCollection();
+        $this->isApiKeyActive = false;
     }
 
     public function getId(): ?int

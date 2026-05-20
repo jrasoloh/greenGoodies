@@ -19,6 +19,10 @@
     --cta-bg: #333333;
     --cta-text: #FFFFFF;
     --cta-height: 77px;
+
+    /* 🎯 Tokens Main Pages (Login, Register, Product Page) */
+    --btn-primary-bg: #565656;
+    --btn-primary-text: #FFFFFF;
 }
 
 /* Reset global */
@@ -313,8 +317,8 @@ header {
     justify-content: center;
     width: 100%;
     height: var(--cta-height);
-    background-color: var(--cta-bg);
-    color: var(--cta-text) !important;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text) !important;
     text-decoration: none;
     font-size: 14px;
     font-weight: 400;

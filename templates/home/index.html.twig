@@ -3,32 +3,93 @@
 {% block title %}Accueil - Green Goodies{% endblock %}
 
 {% block body %}
-    <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+    {# SECTION 1 : BIENVENUE #}
+    <section class="split-section" style="background-color: var(--bg-welcome);">
+        <div class="split-container">
 
-        <h1 style="text-align: center; margin-bottom: 40px;">Nos produits</h1>
-
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
-            {# On boucle sur chaque produit récupéré depuis la base de données #}
-            {% for product in products %}
-                <div style="text-align: center;">
-
-                    {# L'image pointe vers le dossier public/uploads/products/ #}
-                    {% if product.picture %}
-                        <img src="{{ asset('uploads/products/' ~ product.picture) }}" alt="{{ product.name }}" style="width: 100%; height: 300px; object-fit: cover;">
-                    {% endif %}
-
-                    <h3 style="margin: 15px 0 5px;">{{ product.name }}</h3>
-                    <p style="color: #666; font-size: 0.9em; margin-bottom: 15px;">{{ product.shortDescription }}</p>
-
-                    {# ASTUCE PRO : On divise le prix par 100 car il est stocké en centimes ! #}
-                    <p style="font-weight: bold; font-size: 1.1em;">{{ (product.price / 100)|number_format(2, ',', ' ') }} €</p>
-
-                    <a href="#" style="text-decoration: none; color: black; font-size: 0.9em;">Voir le produit</a>
+            {# Panneau Gauche : 709px #}
+            <div class="split-text hero-left">
+                {# Bloc de texte contraint à 362px de large et centré dans les 4 directions #}
+                <div class="text-content-block">
+                    <h1>Bienvenue</h1>
+                    <p class="hero-paragraph">Découvrez notre univers de produits durables et éthiques pour une consommation responsable.</p>
+                    <p class="hero-paragraph">Retrouvez des articles d'hygiène & beauté, des accessoires & boissons et du prêt-à-porter.</p>
                 </div>
+            </div>
+
+            {# Panneau Droit : 731px #}
+            <div class="split-image hero-right">
+                <img src="{{ asset('images/bienvenue.png') }}" alt="Affiche éco-responsable">
+            </div>
+
+        </div>
+    </section>
+
+    {# SECTION 2 : CATALOGUE PRODUITS #}
+    <section class="catalog-section">
+        <h2 class="catalog-title">Nos produits</h2>
+
+        <div class="product-grid">
+            {% for product in products %}
+                <article class="product-card">
+                    <div class="product-image-wrapper">
+                        {% if product.picture %}
+                            <img src="{{ asset('uploads/products/' ~ product.picture) }}" alt="{{ product.name }}">
+                        {% endif %}
+                    </div>
+
+                    {# 🎯 Le Frame 3 complet de Figma (218px) #}
+                    <div class="product-info">
+
+                        {# 🎯 Frame 4 : Bloc solidaire Titre + Description (gap 8px) #}
+                        <div class="product-title-desc">
+                            <h3>{{ product.name }}</h3>
+                            <p class="short-desc">{{ product.shortDescription }}</p>
+                        </div>
+
+                        {# Prix (séparé de 20px du dessus par le parent) #}
+                        <p class="price">{{ (product.price / 100)|number_format(2, ',', ' ') }}€</p>
+
+                        {# CTA_product_card (collé tout en bas du bloc de 218px) #}
+                        <a href="#" class="btn-link">Voir le produit</a>
+
+                    </div>
+                </article>
             {% else %}
                 <p>Aucun produit disponible pour le moment.</p>
             {% endfor %}
         </div>
+    </section>
 
-    </div>
+    {# SECTION 3 : NOTRE CONVICTION #}
+    <section class="triple-section" style="background-color: var(--bg-conviction);">
+        <div class="triple-text-col">
+            <h2>Notre conviction</h2>
+            <p>Chez GreenGoodies, nous croyons en un monde où le commerce peut être synonyme de bien-être pour la planète et ses habitants. Notre mission est de vous proposer une sélection rigoureuse de produits qui allient qualité, durabilité et éthique.</p>
+        </div>
+
+        <div class="triple-empty-col"></div>
+
+        <div class="triple-img-col">
+            <img src="{{ asset('images/convictions.png') }}" alt="Plante au naturel">
+        </div>
+    </section>
+
+    {# SECTION 4 : NOS VALEURS #}
+    <section class="triple-section" style="background-color: var(--bg-valeurs);">
+        <div class="triple-img-col">
+            <img src="{{ asset('images/valeurs.png') }}" alt="Sacs biodégradables">
+        </div>
+
+        <div class="triple-empty-col"></div>
+
+        <div class="triple-text-col">
+            <h2>Nos valeurs</h2>
+            <p class="values-text">
+                <strong>Durabilité :</strong> Nous sélectionnons soigneusement des produits qui respectent l'environnement et favorisent la durabilité.<br>
+                <strong>Éthique :</strong> Nous nous engageons à travailler avec des partenaires et des fournisseurs qui partagent nos valeurs éthiques.<br>
+                <strong>Écologie :</strong> Nous encourageons des pratiques respectueuses de l'écosystème et privilégions les matériaux écologiques.
+            </p>
+        </div>
+    </section>
 {% endblock %}

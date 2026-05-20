@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }} - Green Goodies{% endblock %}
+
+{% block body %}
+    <section class="product-detail-container">
+
+        {# Panneau Gauche : L'image contrainte à 734x686 #}
+        <div class="product-detail-image">
+            {% if product.picture %}
+                <img src="{{ asset('uploads/products/' ~ product.picture) }}" alt="{{ product.name }}">
+            {% endif %}
+        </div>
+
+        {# Panneau Droit : Le conteneur qui fait aussi 686px de haut #}
+        <div class="product-detail-info">
+            <div class="product-detail-content">
+
+                {# Le bloc du haut : Titre, prix, description (figé en haut) #}
+                <div class="product-detail-top">
+                    <h1>{{ product.name }}</h1>
+                    <p class="product-detail-price">{{ (product.price / 100)|number_format(2, ',', ' ') }}€</p>
+
+                    <h2 class="description-label">Description</h2>
+                    <div class="product-description">
+                        <p>{{ product.longDescription|nl2br }}</p>
+                    </div>
+                </div>
+
+                {# Le bouton figé tout en bas #}
+                <button class="btn-cta">Ajouter au panier</button>
+
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

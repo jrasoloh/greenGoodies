@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - Green Goodies{% endblock %}
+
+{% block body %}
+    {# 🎯 La classe 'login' applique la hauteur de 988px à l'image #}
+    <div class="auth-container login">
+
+        {# Panneau Gauche : L'image immersive #}
+        <div class="auth-image">
+            {# Tu pourras remplacer ce chemin par ta vraie image de mimosa #}
+            <img src="{{ asset('images/convictions.png') }}" alt="Connexion Green Goodies">
+        </div>
+
+        {# Panneau Droit : Le bloc formulaire centré #}
+        <div class="auth-form-column">
+            <div class="auth-form-content">
+                <h1>Connexion</h1>
+
+                <form method="post">
+                    {# Gestion des messages d'erreur de sécurité #}
+                    {% if error %}
+                        <div style="color: #D9534F; font-size: 14px; margin-bottom: 20px;">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    {# Champ Email #}
+                    <div class="form-group">
+                        <label for="inputEmail">Adresse email</label>
+                        <input type="email" value="{{ last_username }}" name="_username" id="inputEmail" autocomplete="email" required autofocus>
+                    </div>
+
+                    {# Champ Mot de passe #}
+                    <div class="form-group">
+                        <label for="inputPassword">Mot de passe</label>
+                        <input type="password" name="_password" id="inputPassword" autocomplete="current-password" required>
+                    </div>
+
+                    {# Jeton CSRF obligatoire pour la sécurité Symfony #}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    {# Case Se souvenir de moi (Remember Me) #}
+                    <div class="form-check">
+                        <input type="checkbox" name="_remember_me" id="_remember_me" class="form-check-input">
+                        <label for="_remember_me" class="form-check-label">Se souvenir de moi</label>
+                    </div>
+
+                    {# Bouton de validation global #}
+                    <button type="submit" class="btn-cta">Se connecter</button>
+
+                    {# Lien alternatif discret #}
+                    <a href="{{ path('app_register') }}" class="auth-link">Pas encore de compte ? S'inscrire</a>
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

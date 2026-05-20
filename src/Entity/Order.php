@@ -81,6 +81,17 @@ class Order
         return $this;
     }
 
+    public function getTotalPrice(): float
+    {
+        $totalCents = 0;
+
+        foreach ($this->orderLines as $orderLine) {
+            $totalCents += $orderLine->getProductPrice() * $orderLine->getQuantity();
+        }
+
+        return $totalCents / 100;
+    }
+
     public function getCustomer(): ?User
     {
         return $this->customer;

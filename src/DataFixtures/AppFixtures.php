@@ -3,14 +3,60 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
+use App\Entity\Order;
+use App\Entity\OrderLine;
 use App\Entity\Product;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
     public function load(ObjectManager $manager): void
     {
+        // 1. Création de ton User de test
+        $user = new User();
+        $user->setEmail('test@greengoodies.fr');
+        $user->setFirstName('John');
+        $user->setLastName('Doe');
+        $user->setIsApiKeyActive(false);
+
+        // Hachage du mot de passe "password123"
+        $hashedPassword = $this->passwordHasher->hashPassword($user, 'password123');
+        $user->setPassword($hashedPassword);
+
+        $manager->persist($user);
+
+        // 2. Création de fausses commandes pour ce User
+        for ($i = 1; $i <= 3; $i++) {
+            $order = new Order();
+            $order->setCustomer($user);
+            $order->setCreatedAt(new \DateTimeImmutable("-{$i} days"));
+            $order->setReference('CMD-' . date('Ymd') . '-' . str_pad($i, 3, '0', STR_PAD_LEFT));
+            $order->setStatus('DELIVERED');
+
+            // On crée une ligne de commande (OrderLine) pour cette commande
+            $orderLine = new OrderLine();
+            $orderLine->setProductName('Pack Box Green Goodies');
+            $orderLine->setProductPrice(18550); // 185,50€ stockés en centimes !
+            $orderLine->setQuantity(1);
+
+            // On lie la ligne à la commande
+            $order->addOrderLine($orderLine);
+
+            // On persiste les deux objets
+            $manager->persist($orderLine);
+            $manager->persist($order);
+        }
+
         $categories = ['Salle de bain', 'Alimentation', 'Accessoires'];
         $categoryEntities = [];
 
@@ -108,6 +154,7 @@ class AppFixtures extends Fixture
 
             $manager->persist($product);
         }
+
         $manager->flush();
     }
 }

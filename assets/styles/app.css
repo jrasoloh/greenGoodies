@@ -287,20 +287,23 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: calc(100% + 60px);
+    margin-left: -30px;
+    margin-right: -30px;
     height: 77px;
     font-size: 14px;
     color: var(--color-text);
     text-decoration: none;
     font-weight: 400;
     margin-top: auto;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Aucun effet au survol */
 .product-card .btn-link:hover {
-    color: var(--color-text);
+    background-color: var(--cta-bg);
+    color: var(--cta-text);
     text-decoration: none;
-    background: none;
 }
 
 /* Bouton CTA global (Prévu pour les autres pages) */

@@ -1,19 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription - Green Goodies{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    {# 🎯 La classe 'register' applique la hauteur de 1104px à l'image #}
+    <div class="auth-container register">
 
-    {{ form_errors(registrationForm) }}
+        {# Panneau Gauche : L'image immersive feuillage #}
+        <div class="auth-image">
+            {# Tu pourras remplacer ce chemin par ton image de feuilles vertes #}
+            <img src="{{ asset('images/signup.png') }}" alt="Inscription Green Goodies">
+        </div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {# Panneau Droit : Le bloc formulaire centré #}
+        <div class="auth-form-column">
+            <div class="auth-form-content">
+                <h1>Inscription</h1>
+                <p style="font-size: 12px; color: var(--color-muted); margin-top: -30px; margin-bottom: 40px;">Tous les champs sont obligatoires.</p>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                {{ form_start(registrationForm) }}
+
+                {# Champ Nom #}
+                <div class="form-group">
+                    <label for="{{ registrationForm.lastName.vars.id }}">Nom</label>
+                    {{ form_widget(registrationForm.lastName) }}
+                    {{ form_errors(registrationForm.lastName) }}
+                </div>
+
+                {# Champ Prénom #}
+                <div class="form-group">
+                    <label for="{{ registrationForm.firstName.vars.id }}">Prénom</label>
+                    {{ form_widget(registrationForm.firstName) }}
+                    {{ form_errors(registrationForm.firstName) }}
+                </div>
+
+                {# Champ Email #}
+                <div class="form-group">
+                    <label for="{{ registrationForm.email.vars.id }}">Adresse email</label>
+                    {{ form_widget(registrationForm.email) }}
+                    {{ form_errors(registrationForm.email) }}
+                </div>
+
+                {# Champ Mot de passe (le first) #}
+                <div class="form-group">
+                    <label for="{{ registrationForm.plainPassword.first.vars.id }}">Mot de passe</label>
+                    {{ form_widget(registrationForm.plainPassword.first) }}
+                    {{ form_errors(registrationForm.plainPassword.first) }}
+                </div>
+
+                {# Champ Confirmation mot de passe (le second) #}
+                <div class="form-group">
+                    <label for="{{ registrationForm.plainPassword.second.vars.id }}">Confirmation mot de passe</label>
+                    {{ form_widget(registrationForm.plainPassword.second) }}
+                    {{ form_errors(registrationForm.plainPassword.second) }}
+                </div>
+
+                {# Case CGU #}
+                <div class="form-check">
+                    {{ form_widget(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                    <label for="{{ registrationForm.agreeTerms.vars.id }}" class="form-check-label">J'accepte les CGU de GreenGoodies</label>
+                    {{ form_errors(registrationForm.agreeTerms) }}
+                </div>
+
+                {# Bouton d'action #}
+                <button type="submit" class="btn-cta">S'inscrire</button>
+
+                {# Lien alternatif discret #}
+                <a href="{{ path('app_login') }}" class="auth-link">Déjà un compte ? Se connecter</a>
+
+                {# Désactive le rendu automatique du reste du formulaire car on a tout traité manuellement #}
+                {{ form_end(registrationForm, {'render_rest': false}) }}
+            </div>
+        </div>
+
+    </div>
 {% endblock %}

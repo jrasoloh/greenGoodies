@@ -306,7 +306,7 @@ header {
     text-decoration: none;
 }
 
-/* Bouton CTA global (Prévu pour les autres pages) */
+/* Bouton CTA global */
 .btn-cta {
     display: flex;
     align-items: center;
@@ -422,4 +422,127 @@ footer {
 .product-detail-content .btn-cta {
     margin-top: auto;
     width: 100%;
+}
+
+/* ==========================================================================
+   Common Auth Page Styles (Login & Registration)
+   ========================================================================== */
+.auth-container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    background-color: var(--bg-body);
+}
+
+.auth-image {
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.auth-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.auth-form-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 120px;
+}
+
+.auth-form-content {
+    width: 100%;
+    max-width: 479px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form-content h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--color-dark);
+    margin-bottom: 40px;
+}
+
+.auth-form-content .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.auth-form-content label {
+    font-size: 14px;
+    color: var(--color-text);
+    margin-bottom: 8px;
+}
+
+/* Generic bordered input field styles */
+.auth-form-content input[type="text"],
+.auth-form-content input[type="email"],
+.auth-form-content input[type="password"] {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #CCCCCC;
+    padding: 0 16px;
+    font-size: 14px;
+    color: var(--color-text);
+    background-color: transparent;
+}
+
+/* Main action button (like 'Se connecter', 'S'inscrire') */
+.auth-form-content .btn-cta {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+/* Link for alternate action (like 'Pas encore de compte ? S'inscrire') */
+.auth-form-content .auth-link {
+    font-size: 14px;
+    color: var(--color-muted);
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+.auth-form-content .auth-link:hover {
+    color: var(--color-dark);
+    text-decoration: underline;
+}
+
+/* Checkbox specific styles (Registration CGU) */
+.auth-form-content .form-check {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.auth-form-content .form-check-input {
+    margin-right: 10px;
+    height: 16px;
+    width: 16px;
+}
+
+.auth-form-content .form-check-label {
+    font-size: 14px;
+    color: var(--color-text);
+}
+
+/* Specific dimension overrides for auth container types based on provided dimensions */
+.auth-container.login .auth-image {
+    width: 734px;
+    height: 988px;
+}
+
+.auth-container.register .auth-image {
+    width: 734px;
+    height: 1104px;
 }

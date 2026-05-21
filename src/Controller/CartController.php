@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,12 +22,13 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/panier/add/{id}', name: 'app_cart_add')]
-    public function add(int $id, CartService $cartService): Response
+    #[Route('/panier/add/{id}', name: 'app_cart_add', methods: ['POST'])]
+    public function add(int $id, Request $request, CartService $cartService): Response
     {
-        $cartService->add($id);
+        $quantity = $request->request->getInt('quantity', 1);
 
-        // Après l'ajout, on redirige automatiquement vers la page du panier
+        $cartService->add($id, $quantity);
+
         return $this->redirectToRoute('app_cart');
     }
 

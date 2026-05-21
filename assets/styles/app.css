@@ -828,3 +828,31 @@ footer {
 .btn-validate-order:hover {
     opacity: 0.85;
 }
+
+/* Formulaire d'ajout au panier sur la page Produit */
+.add-to-cart-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.quantity-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quantity-wrapper label {
+    font-size: 14px;
+    color: var(--color-muted);
+}
+
+.qty-input {
+    width: 70px;
+    padding: 15px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    text-align: center;
+    background-color: var(--bg-card-cream);
+}

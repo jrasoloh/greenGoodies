@@ -27,9 +27,17 @@
                     </div>
                 </div>
 
-                <a href="{{ path('app_cart_add', {'id': product.id}) }}" class="btn-cta">
-                    Ajouter au panier
-                </a>
+                {# 🎯 Formulaire avec sélection de la quantité #}
+                <form action="{{ path('app_cart_add', {'id': product.id}) }}" method="POST" class="add-to-cart-form">
+
+                    <div class="quantity-wrapper">
+                        <label for="quantity">Quantité</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="99" class="qty-input">
+                    </div>
+
+                    <button type="submit" class="btn-cta">Ajouter au panier</button>
+
+                </form>
 
             </div>
         </div>

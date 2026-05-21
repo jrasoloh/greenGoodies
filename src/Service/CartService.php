@@ -16,16 +16,15 @@ class CartService
         $this->productRepository = $productRepository;
     }
 
-    // 1. Ajouter un produit au panier
-    public function add(int $id): void
+    public function add(int $id, int $quantity = 1): void
     {
         $session = $this->requestStack->getSession();
         $cart = $session->get('cart', []);
 
         if (!empty($cart[$id])) {
-            $cart[$id]++;
+            $cart[$id] += $quantity;
         } else {
-            $cart[$id] = 1;
+            $cart[$id] = $quantity;
         }
 
         $session->set('cart', $cart);

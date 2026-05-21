@@ -21,8 +21,8 @@ class CartService
         $session = $this->requestStack->getSession();
         $cart = $session->get('cart', []);
 
-        if (!empty($cart[$id])) {
-            $cart[$id] += $quantity;
+        if ($quantity <= 0) {
+            unset($cart[$id]);
         } else {
             $cart[$id] = $quantity;
         }
@@ -30,13 +30,11 @@ class CartService
         $session->set('cart', $cart);
     }
 
-    // 2. Vider complètement le panier
     public function empty(): void
     {
         $this->requestStack->getSession()->remove('cart');
     }
 
-    // 3. Récupérer le panier complet avec les objets Product et le total
     public function getFullCart(): array
     {
         $cart = $this->requestStack->getSession()->get('cart', []);
@@ -64,18 +62,5 @@ class CartService
             'items' => $cartData,
             'total' => $totalCents / 100
         ];
-    }
-
-    // 🎯 Supprimer un produit spécifique du panier
-    public function remove(int $id): void
-    {
-        $session = $this->requestStack->getSession();
-        $cart = $session->get('cart', []);
-
-        if (!empty($cart[$id])) {
-            unset($cart[$id]);
-        }
-
-        $session->set('cart', $cart);
     }
 }

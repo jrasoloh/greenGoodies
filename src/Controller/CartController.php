@@ -40,13 +40,4 @@ class CartController extends AbstractController
         // On redirige vers le panier (qui sera du coup vide)
         return $this->redirectToRoute('app_cart');
     }
-
-    // 🎯 Route sécurisée en POST pour supprimer un seul article
-    #[Route('/panier/remove/{id}', name: 'app_cart_remove', methods: ['POST'])]
-    public function remove(int $id, CartService $cartService): Response
-    {
-        $cartService->remove($id);
-
-        return $this->redirectToRoute('app_cart');
-    }
 }

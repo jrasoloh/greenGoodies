@@ -772,7 +772,7 @@ footer {
 /* 📦 Ligne Produit */
 .cart-item {
     display: grid;
-    grid-template-columns: 142px 1fr auto;
+    grid-template-columns: 142px 1fr;
     gap: 30px;
     align-items: center;
     width: 100%;

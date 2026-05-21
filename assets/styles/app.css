@@ -633,26 +633,26 @@ footer {
 }
 
 /* ==========================================================================
-   🎯 Répartition des colonnes (Maquette Figma au pixel près)
+   🎯 Répartition des colonnes (Ajustement N° de commande long)
    ========================================================================== */
 
-/* Colonne 1 (N°) */
+/* Colonne 1 (N°) : On lui donne la moitié de la table pour les références longues */
 .orders-table th:nth-child(1),
 .orders-table td:nth-child(1) {
-    width: 35%;
+    width: 45%;
 }
 
-/* Colonne 2 (Date) */
+/* Colonne 2 (Date) : Décalée plus à droite */
 .orders-table th:nth-child(2),
 .orders-table td:nth-child(2) {
-    width: 35%;
+    width: 30%;
 }
 
-/* Colonne 3 (Prix) */
+/* Colonne 3 (Prix) : Décalée à gauche et alignée avec son en-tête */
 .orders-table th:nth-child(3),
 .orders-table td:nth-child(3) {
-    width: 30%;
-    text-align: right;
+    width: 25%;
+    text-align: left;
 }
 
 /* Le bouton dans les cartes */

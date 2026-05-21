@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier - Green Goodies{% endblock %}
+
+{% block body %}
+    {# 🎯 On réutilise ta structure globale au fond beige #}
+    <div class="account-page">
+
+        <h1 class="account-title">Mon panier</h1>
+
+        {# Conteneur spécifique pour aligner le lien "Vider" et la carte #}
+        <div class="cart-container">
+
+            {# 🎯 On n'affiche le lien Vider que s'il y a des articles #}
+            {% if items|length > 0 %}
+                <form action="{{ path('app_cart_empty') }}" method="POST" style="margin: 0;">
+                    <button type="submit" class="btn-empty-cart">x Vider le panier</button>
+                </form>
+            {% endif %}
+
+            {# 🎯 On sépare les articles et le total en deux blocs distincts #}
+            {% if items|length > 0 %}
+
+                {# Bloc 1 : La liste des produits (fond plein) #}
+                <div class="account-card cart-items-card">
+                    {% for item in items %}
+                        <div class="cart-item">
+                            <img src="{{ asset('uploads/products/' ~ item.product.picture) }}" alt="{{ item.product.name }}" class="cart-item-img">
+
+                            <div class="cart-item-details">
+                                <h3>{{ item.product.name }}</h3>
+                                <p class="cart-item-qty">Quantité : {{ item.quantity }}</p>
+                                <p class="cart-item-price">{{ (item.product.price / 100)|number_format(2, ',', '') }}€</p>
+                            </div>
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {# Bloc 2 : Le total (fond transparent 70%) #}
+                <div class="cart-summary-card">
+                    <p class="cart-summary-total">Total panier : <span>{{ total|number_format(2, ',', '') }}€</span></p>
+                    <p class="cart-summary-shipping">Frais de livraison : Offert</p>
+                </div>
+
+            {% else %}
+                <div class="account-card cart-items-card">
+                    <p style="text-align: center; color: var(--color-muted);">Votre panier est tristement vide.</p>
+                </div>
+            {% endif %}
+
+            {# 🎯 On cache le bouton de validation si le panier est vide #}
+            {% if items|length > 0 %}
+                <form action="{{ path('app_cart_validate') }}" method="POST" class="validate-order-form">
+                    <button type="submit" class="btn-validate-order">Valider la commande</button>
+                </form>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

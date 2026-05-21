@@ -29,6 +29,10 @@
     --bg-card-cream: #FFFDF7;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Reset global */
 * {
     box-sizing: border-box;
@@ -204,6 +208,7 @@ header {
     width: 100%;
     margin: 0 auto;
     padding-top: 60px;
+    scroll-margin-top: 72px;
 }
 
 .catalog-title {
@@ -628,26 +633,26 @@ footer {
 }
 
 /* ==========================================================================
-   🎯 Répartition des colonnes (Maquette Figma au pixel près)
+   🎯 Répartition des colonnes (Ajustement N° de commande long)
    ========================================================================== */
 
-/* Colonne 1 (N°) */
+/* Colonne 1 (N°) : On lui donne la moitié de la table pour les références longues */
 .orders-table th:nth-child(1),
 .orders-table td:nth-child(1) {
-    width: 35%;
+    width: 45%;
 }
 
-/* Colonne 2 (Date) */
+/* Colonne 2 (Date) : Décalée plus à droite */
 .orders-table th:nth-child(2),
 .orders-table td:nth-child(2) {
-    width: 35%;
+    width: 30%;
 }
 
-/* Colonne 3 (Prix) */
+/* Colonne 3 (Prix) : Décalée à gauche et alignée avec son en-tête */
 .orders-table th:nth-child(3),
 .orders-table td:nth-child(3) {
-    width: 30%;
-    text-align: right;
+    width: 25%;
+    text-align: left;
 }
 
 /* Le bouton dans les cartes */
@@ -734,4 +739,175 @@ footer {
 .btn-empty-cart:hover {
     font-weight: 700;
     text-decoration: underline;
+}
+
+/* ==========================================================================
+   🛒 Page "Mon Panier"
+   ========================================================================== */
+
+.cart-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Bloc 1 : Conteneur des articles (remplace .cart-card) */
+.cart-items-card {
+    padding: 40px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.cart-card {
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+/* 📦 Ligne Produit */
+.cart-item {
+    display: grid;
+    grid-template-columns: 142px 1fr;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+}
+
+.cart-item-img {
+    width: 100%;
+    height: 133px;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    min-width: 0;
+}
+
+.cart-item-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cart-item-details .cart-item-qty {
+    margin: 0 0 15px 0;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.cart-item-details .cart-item-price {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Bloc 2 : Conteneur du résumé Total */
+.cart-summary-card {
+    background-color: #FFFDF7B2;
+    padding: 30px 40px;
+    margin-bottom: 40px;
+    width: 100%;
+    text-align: right;
+    box-sizing: border-box;
+}
+
+.cart-summary-total {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.cart-summary-total span {
+    font-size: 22px;
+}
+
+.cart-summary-shipping {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+/* 🚀 Bouton Valider la commande */
+.validate-order-form {
+    width: 100%;
+}
+
+.btn-validate-order {
+    background-color: #5A5A5A;
+    color: white;
+    border: none;
+    padding: 18px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-validate-order:hover {
+    opacity: 0.85;
+}
+
+/* Formulaire d'ajout au panier sur la page Produit */
+.add-to-cart-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 20px;
+    margin-top: auto;
+    padding-top: 30px;
+}
+
+.quantity-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.quantity-wrapper label {
+    font-size: 14px;
+    color: var(--color-muted);
+    text-align: center;
+}
+
+.qty-input {
+    width: 70px;
+    padding: 15px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    text-align: center;
+    background-color: var(--bg-card-cream);
+    color: var(--color-text);
+}
+
+/* ==========================================================================
+   Alertes / Messages Flash
+   ========================================================================== */
+
+/* Structure commune à tous les messages */
+.flash-message {
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Couleurs spécifiques au succès (label = 'success') */
+.flash-success {
+    background-color: #E2F0D9;
+    color: #385723;
+    font-weight: 500;
+}
+
+/* En bonus, pour une erreur (label = 'danger' ou 'error') plus tard */
+.flash-error,
+.flash-danger {
+    background-color: #F8D7DA;
+    color: #721C24;
+    font-weight: 500;
 }

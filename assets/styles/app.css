@@ -650,7 +650,7 @@ footer {
     text-align: right;
 }
 
-/* Le bouton dans les cartes (réutilise la variable --btn-primary-bg) */
+/* Le bouton dans les cartes */
 .account-card form {
     display: flex;
     justify-content: center;

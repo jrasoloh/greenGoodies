@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte - Green Goodies{% endblock %}
+
+{% block body %}
+    <div class="account-page">
+        <h1 class="account-title">Mon compte</h1>
+
+        <div class="account-container">
+
+            {# Bloc 1 : Commandes #}
+            <div class="account-card">
+                <h2>Mes commandes</h2>
+                <table class="orders-table">
+                    <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Date</th>
+                        <th>Prix</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {# On boucle sur les commandes de l'utilisateur (si la relation existe dans ton entité) #}
+                    {% for order in user.orders %}
+                        <tr>
+                            <td>{{ '%02d'|format(loop.index) }}</td>
+                            <td>{{ order.createdAt|date('d/m/Y') }}</td>
+                            <td>{{ order.totalPrice|number_format(2, ',', ' ') }}€</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="3" style="text-align: center; color: var(--color-muted);">
+                                Vous n'avez pas encore passé de commande.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {# Bloc 2 : Accès API #}
+            <div class="account-card">
+                <h2>Mon accès API</h2>
+                {# On utilise un formulaire POST pour sécuriser le changement d'état #}
+                <form action="{{ path('app_account_api_toggle') }}" method="POST">
+                    <button type="submit" class="btn-cta">
+                        {{ user.isApiKeyActive ? 'Désactiver mon accès API' : 'Activer mon accès API' }}
+                    </button>
+                </form>
+            </div>
+
+            {# Bloc 3 : Suppression du compte #}
+            <div class="account-card">
+                <form action="{{ path('app_account_delete') }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer définitivement votre compte ? Cette action est irréversible.');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete-account') }}">
+                    <button type="submit" class="btn-cta">Supprimer mon compte</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

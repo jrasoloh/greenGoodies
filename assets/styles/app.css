@@ -29,6 +29,10 @@
     --bg-card-cream: #FFFDF7;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* Reset global */
 * {
     box-sizing: border-box;
@@ -204,6 +208,7 @@ header {
     width: 100%;
     margin: 0 auto;
     padding-top: 60px;
+    scroll-margin-top: 90px;
 }
 
 .catalog-title {
@@ -759,7 +764,6 @@ footer {
     gap: 30px;
 }
 
-/* Réajustement du padding pour la carte panier */
 .cart-card {
     padding: 40px;
     margin-bottom: 40px;
@@ -768,7 +772,7 @@ footer {
 /* 📦 Ligne Produit */
 .cart-item {
     display: grid;
-    grid-template-columns: 142px 1fr auto; /* 🎯 Colonne 1: 142px | Colonne 2: Tout le reste (1fr) | Colonne 3: Juste la croix (auto) */
+    grid-template-columns: 142px 1fr auto;
     gap: 30px;
     align-items: center;
     width: 100%;

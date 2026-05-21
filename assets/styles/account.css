@@ -1,0 +1,174 @@
+/* ==========================================================================
+   🎯 5. USER ACCOUNT & ALERTS STYLES (account.css)
+   ========================================================================== */
+
+.account-page {
+    background-color: var(--bg-page-beige);
+    min-height: calc(100vh - 100px);
+    padding-bottom: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--color-dark);
+    margin-top: 43px;
+    margin-bottom: 43px;
+    text-align: center;
+}
+
+.account-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 604px;
+}
+
+.account-card {
+    background-color: var(--bg-card-cream);
+    width: 100%;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.account-card h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: 40px;
+}
+
+/* Styles de la table des commandes */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 15px 0;
+    font-size: 14px;
+    color: var(--color-text);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* En-têtes spécifiques */
+.orders-table th {
+    font-weight: 500;
+    color: var(--color-muted);
+    border-bottom: none;
+    padding-bottom: 20px;
+}
+
+/* Répartition des colonnes (Ajustement N° de commande long) */
+.orders-table th:nth-child(1),
+.orders-table td:nth-child(1) {
+    width: 45%;
+}
+
+.orders-table th:nth-child(2),
+.orders-table td:nth-child(2) {
+    width: 30%;
+}
+
+.orders-table th:nth-child(3),
+.orders-table td:nth-child(3) {
+    width: 25%;
+    text-align: left;
+}
+
+/* Alignement du bouton CTA dans l'espace compte */
+.account-card form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.account-card .btn-cta {
+    width: 479px;
+}
+
+/* Encadré Clé API (Optionnel / Conservé pour compatibilité) */
+.api-key-box {
+    background-color: var(--bg-body);
+    border: 1px dashed var(--color-muted);
+    padding: 16px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.api-key-box:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: var(--color-dark);
+}
+
+.api-key-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.api-key-label {
+    font-size: 12px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.api-key-value {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-dark);
+    word-break: break-all;
+}
+
+.api-key-badge {
+    font-size: 12px;
+    color: var(--color-muted);
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.api-key-badge.success {
+    background-color: #E2F0D9;
+    color: #385723;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Alertes / Messages Flash
+   ========================================================================== */
+
+.flash-message {
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.flash-success {
+    background-color: #E2F0D9;
+    color: #385723;
+    font-weight: 500;
+}
+
+.flash-error,
+.flash-danger {
+    background-color: #F8D7DA;
+    color: #721C24;
+    font-weight: 500;
+}

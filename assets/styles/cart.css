@@ -1,0 +1,130 @@
+/* ==========================================================================
+   🎯 6. SHOPPING CART STYLES (cart.css)
+   ========================================================================== */
+
+.cart-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Bloc 1 : Conteneur des articles (remplace .cart-card) */
+.cart-items-card {
+    padding: 40px;
+    margin-bottom: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.cart-card {
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+/* 📦 Ligne Produit dans le panier */
+.cart-item {
+    display: grid;
+    grid-template-columns: 142px 1fr;
+    gap: 30px;
+    align-items: center;
+    width: 100%;
+}
+
+.cart-item-img {
+    width: 100%;
+    height: 133px;
+    object-fit: cover;
+}
+
+.cart-item-details {
+    min-width: 0;
+}
+
+.cart-item-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cart-item-details .cart-item-qty {
+    margin: 0 0 15px 0;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.cart-item-details .cart-item-price {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Bloc 2 : Conteneur du résumé Total */
+.cart-summary-card {
+    background-color: #FFFDF7B2;
+    padding: 30px 40px;
+    margin-bottom: 40px;
+    width: 100%;
+    text-align: right;
+    box-sizing: border-box;
+}
+
+.cart-summary-total {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.cart-summary-total span {
+    font-size: 22px;
+}
+
+.cart-summary-shipping {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+/* Bouton "Vider le panier" */
+.btn-empty-cart {
+    color: #666666;
+    font-size: 14px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin-bottom: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-empty-cart:hover {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+/* 🚀 Formulaire et bouton Valider la commande */
+.validate-order-form {
+    width: 100%;
+}
+
+.btn-validate-order {
+    background-color: #5A5A5A;
+    color: white;
+    border: none;
+    padding: 18px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-validate-order:hover {
+    opacity: 0.85;
+}

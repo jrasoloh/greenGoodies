@@ -22,41 +22,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // 1. Création de ton User de test
-        $user = new User();
-        $user->setEmail('test@greengoodies.fr');
-        $user->setFirstName('John');
-        $user->setLastName('Doe');
-        $user->setIsApiKeyActive(false);
-
-        // Hachage du mot de passe "password123"
-        $hashedPassword = $this->passwordHasher->hashPassword($user, 'password123');
-        $user->setPassword($hashedPassword);
-
-        $manager->persist($user);
-
-        // 2. Création de fausses commandes pour ce User
-        for ($i = 1; $i <= 3; $i++) {
-            $order = new Order();
-            $order->setCustomer($user);
-            $order->setCreatedAt(new \DateTimeImmutable("-{$i} days"));
-            $order->setReference('CMD-' . date('Ymd') . '-' . str_pad($i, 3, '0', STR_PAD_LEFT));
-            $order->setStatus('DELIVERED');
-
-            // On crée une ligne de commande (OrderLine) pour cette commande
-            $orderLine = new OrderLine();
-            $orderLine->setProductName('Pack Box Green Goodies');
-            $orderLine->setProductPrice(18550); // 185,50€ stockés en centimes !
-            $orderLine->setQuantity(1);
-
-            // On lie la ligne à la commande
-            $order->addOrderLine($orderLine);
-
-            // On persiste les deux objets
-            $manager->persist($orderLine);
-            $manager->persist($order);
-        }
-
+        // 1. Création des Catégories
         $categories = ['Salle de bain', 'Alimentation', 'Accessoires'];
         $categoryEntities = [];
 
@@ -67,6 +33,7 @@ class AppFixtures extends Fixture
             $categoryEntities[$catName] = $category;
         }
 
+        // 2. Création des Produits avec les textes complets
         $productsData = [
             [
                 'name' => "Kit d'hygiène recyclable",
@@ -142,6 +109,7 @@ class AppFixtures extends Fixture
             ]
         ];
 
+        $productEntities = [];
         foreach ($productsData as $data) {
             $product = new Product();
             $product->setName($data['name'])
@@ -153,6 +121,43 @@ class AppFixtures extends Fixture
                 ->setCategory($categoryEntities[$data['cat']]);
 
             $manager->persist($product);
+            $productEntities[] = $product;
+        }
+
+        // 3. Création de l'utilisateur de test
+        $user = new User();
+        $user->setEmail('test@test.com');
+        $user->setFirstName('John');
+        $user->setLastName('Doe');
+        $user->setIsApiKeyActive(true);
+
+        // Mot de passe court "test"
+        $hashedPassword = $this->passwordHasher->hashPassword($user, 'test');
+        $user->setPassword($hashedPassword);
+
+        $manager->persist($user);
+
+        // 4. Création de l'historique des commandes avec des relations de produits valides
+        for ($i = 1; $i <= 3; $i++) {
+            $order = new Order();
+            $order->setCustomer($user);
+            $order->setCreatedAt(new \DateTimeImmutable("-{$i} days"));
+            $order->setReference('CMD-' . date('Ymd') . '-' . str_pad($i, 3, '0', STR_PAD_LEFT));
+            $order->setStatus('DELIVERED');
+
+            /** @var Product $randomProduct */
+            $randomProduct = $productEntities[array_rand($productEntities)];
+
+            $orderLine = new OrderLine();
+            $orderLine->setProduct($randomProduct); // Liaison propre
+            $orderLine->setProductName($randomProduct->getName());
+            $orderLine->setProductPrice($randomProduct->getPrice());
+            $orderLine->setQuantity(rand(1, 2));
+
+            $order->addOrderLine($orderLine);
+
+            $manager->persist($orderLine);
+            $manager->persist($order);
         }
 
         $manager->flush();

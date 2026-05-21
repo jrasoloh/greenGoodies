@@ -1,0 +1,128 @@
+/* ==========================================================================
+   🎯 4. AUTHENTICATION STYLES (auth.css)
+   ========================================================================== */
+
+.auth-container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    background-color: var(--bg-body);
+}
+
+.auth-image {
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.auth-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.auth-form-column {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 120px;
+}
+
+.auth-form-content {
+    width: 100%;
+    max-width: 479px;
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form-content h1 {
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--color-dark);
+    margin-bottom: 40px;
+}
+
+.auth-form-content .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.auth-form-content label {
+    font-size: 14px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+}
+
+/* Styles génériques des champs de texte de formulaires */
+.auth-form-content input[type="text"],
+.auth-form-content input[type="email"],
+.auth-form-content input[type="password"] {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #CCCCCC;
+    padding: 0 16px;
+    font-size: 14px;
+    color: var(--color-muted);
+    background-color: transparent;
+}
+
+/* Espacement spécifique du gros bouton CTA sur les formulaires */
+.auth-form-content .btn-cta {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+/* Liens alternatifs (ex: 'Pas encore de compte ? S'inscrire') */
+.auth-form-content .auth-link {
+    font-size: 14px;
+    color: var(--color-muted);
+    text-align: center;
+    text-decoration: underline;
+    display: block;
+    width: 100%;
+}
+
+.auth-form-content .auth-link:hover {
+    color: var(--color-dark);
+    text-decoration: underline;
+}
+
+/* Gestion spécifique des cases à cocher (CGU) */
+.auth-form-content .form-check {
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.auth-form-content .form-check-input {
+    margin: 0 10px 0 0;
+    height: 16px;
+    width: 16px;
+    cursor: pointer;
+}
+
+.auth-form-content .form-check-label {
+    font-size: 14px;
+    color: var(--color-muted);
+    line-height: 1;
+    padding-top: 2px;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+/* Overrides de dimensions exactes selon la page d'authentification */
+.auth-container.login .auth-image {
+    width: 734px;
+    height: 988px;
+}
+
+.auth-container.register .auth-image {
+    width: 734px;
+    height: 1104px;
+}

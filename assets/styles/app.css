@@ -868,6 +868,7 @@ footer {
 .quantity-wrapper label {
     font-size: 14px;
     color: var(--color-muted);
+    text-align: center;
 }
 
 .qty-input {
@@ -877,6 +878,7 @@ footer {
     font-size: 16px;
     text-align: center;
     background-color: var(--bg-card-cream);
+    color: var(--color-text);
 }
 
 /* 🎯 Formulaire et bouton pour retirer un article */

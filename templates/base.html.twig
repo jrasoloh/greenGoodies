@@ -29,7 +29,7 @@
 
             <nav class="nav-links">
                 <a href="{{ path('app_home') }}">Nos produits</a>
-                <a href="#">Mon panier</a>
+                <a href="{{ path('app_cart') }}">Mon panier</a>
 
                 {% if app.user %}
                     <a href="{{ path('app_account_index') }}">Mon compte</a>

@@ -735,3 +735,96 @@ footer {
     font-weight: 700;
     text-decoration: underline;
 }
+
+/* ==========================================================================
+   🛒 Page "Mon Panier"
+   ========================================================================== */
+
+.cart-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Réajustement du padding pour la carte panier */
+.cart-card {
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+/* 📦 Ligne Produit */
+.cart-item {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.cart-item-img {
+    width: 142px;
+    height: 133px;
+    object-fit: cover;
+    background-color: #f5f5f5;
+}
+
+.cart-item-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.cart-item-details .cart-item-qty {
+    margin: 0 0 15px 0;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+.cart-item-details .cart-item-price {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* 💰 Zone Total */
+.cart-summary {
+    text-align: right;
+}
+
+.cart-summary-total {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+}
+
+.cart-summary-total span {
+    font-size: 22px;
+}
+
+.cart-summary-shipping {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 14px;
+}
+
+/* 🚀 Bouton Valider la commande */
+.btn-validate-order {
+    background-color: #5A5A5A;
+    color: white;
+    border: none;
+    padding: 18px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.btn-validate-order:hover {
+    opacity: 0.85;
+}

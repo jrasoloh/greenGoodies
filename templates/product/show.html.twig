@@ -27,8 +27,9 @@
                     </div>
                 </div>
 
-                {# Le bouton figé tout en bas #}
-                <button class="btn-cta">Ajouter au panier</button>
+                <a href="{{ path('app_cart_add', {'id': product.id}) }}" class="btn-cta">
+                    Ajouter au panier
+                </a>
 
             </div>
         </div>

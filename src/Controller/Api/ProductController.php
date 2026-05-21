@@ -20,7 +20,7 @@ class ProductController extends AbstractController
                 'id' => $product->getId(),
                 'name' => $product->getName(),
                 'price' => $product->getPrice() / 100,
-                'description' => $product->getDescription(),
+                'description' => $product->getLongDescription(),
             ];
         }
 

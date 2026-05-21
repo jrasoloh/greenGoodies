@@ -32,7 +32,7 @@
                 <a href="#">Mon panier</a>
 
                 {% if app.user %}
-                    <a href="#">Mon compte</a>
+                    <a href="{{ path('app_account_index') }}">Mon compte</a>
                     <a href="{{ path('app_logout') }}">Déconnexion</a>
                 {% else %}
                     <a href="{{ path('app_login') }}">Connexion</a>

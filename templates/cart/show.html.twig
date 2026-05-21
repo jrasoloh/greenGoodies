@@ -18,10 +18,11 @@
                 </form>
             {% endif %}
 
-            <div class="account-card cart-card">
+            {# 🎯 On sépare les articles et le total en deux blocs distincts #}
+            {% if items|length > 0 %}
 
-                {% if items|length > 0 %}
-                    {# 🎯 Boucle sur les produits du panier #}
+                {# Bloc 1 : La liste des produits (fond plein) #}
+                <div class="account-card cart-items-card">
                     {% for item in items %}
                         <div class="cart-item">
                             <img src="{{ asset('uploads/products/' ~ item.product.picture) }}" alt="{{ item.product.name }}" class="cart-item-img">
@@ -33,17 +34,19 @@
                             </div>
                         </div>
                     {% endfor %}
+                </div>
 
-                    {# 🎯 Total dynamique #}
-                    <div class="cart-summary">
-                        <p class="cart-summary-total">Total panier : <span>{{ total|number_format(2, ',', '') }}€</span></p>
-                        <p class="cart-summary-shipping">Frais de livraison : Offert</p>
-                    </div>
-                {% else %}
+                {# Bloc 2 : Le total (fond transparent 70%) #}
+                <div class="cart-summary-card">
+                    <p class="cart-summary-total">Total panier : <span>{{ total|number_format(2, ',', '') }}€</span></p>
+                    <p class="cart-summary-shipping">Frais de livraison : Offert</p>
+                </div>
+
+            {% else %}
+                <div class="account-card cart-items-card">
                     <p style="text-align: center; color: var(--color-muted);">Votre panier est tristement vide.</p>
-                {% endif %}
-
-            </div>
+                </div>
+            {% endif %}
 
             {# 🎯 On cache le bouton de validation si le panier est vide #}
             {% if items|length > 0 %}

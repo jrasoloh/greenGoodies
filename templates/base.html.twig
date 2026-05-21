@@ -43,6 +43,15 @@
     </header>
 
     <main>
+        {# 🎯 Affichage des messages de confirmation ou d'erreur #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-message flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {% block body %}{% endblock %}
     </main>
 

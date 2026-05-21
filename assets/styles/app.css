@@ -831,6 +831,10 @@ footer {
 }
 
 /* 🚀 Bouton Valider la commande */
+.validate-order-form {
+    width: 100%;
+}
+
 .btn-validate-order {
     background-color: #5A5A5A;
     color: white;
@@ -881,25 +885,29 @@ footer {
     color: var(--color-text);
 }
 
-/* 🎯 Formulaire et bouton pour retirer un article */
-.remove-item-form {
-    margin: 0;
-    display: flex;
-    justify-content: flex-end;
+/* ==========================================================================
+   Alertes / Messages Flash
+   ========================================================================== */
+
+/* Structure commune à tous les messages */
+.flash-message {
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 14px;
 }
 
-.btn-remove-item {
-    background: none;
-    border: none;
-    font-size: 22px;
-    color: var(--color-text);
-    opacity: 0.25;
-    cursor: pointer;
-    padding: 10px;
-    line-height: 1;
-    transition: opacity 0.2s ease;
+/* Couleurs spécifiques au succès (label = 'success') */
+.flash-success {
+    background-color: #E2F0D9;
+    color: #385723;
+    font-weight: 500;
 }
 
-.btn-remove-item:hover {
-    opacity: 0.6;
+/* En bonus, pour une erreur (label = 'danger' ou 'error') plus tard */
+.flash-error,
+.flash-danger {
+    background-color: #F8D7DA;
+    color: #721C24;
+    font-weight: 500;
 }

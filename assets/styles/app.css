@@ -767,16 +767,21 @@ footer {
 
 /* 📦 Ligne Produit */
 .cart-item {
-    display: flex;
+    display: grid;
+    grid-template-columns: 142px 1fr auto; /* 🎯 Colonne 1: 142px | Colonne 2: Tout le reste (1fr) | Colonne 3: Juste la croix (auto) */
     gap: 30px;
     align-items: center;
+    width: 100%;
 }
 
 .cart-item-img {
-    width: 142px;
+    width: 100%;
     height: 133px;
     object-fit: cover;
-    background-color: #f5f5f5;
+}
+
+.cart-item-details {
+    min-width: 0;
 }
 
 .cart-item-details h3 {
@@ -868,4 +873,27 @@ footer {
     font-size: 16px;
     text-align: center;
     background-color: var(--bg-card-cream);
+}
+
+/* 🎯 Formulaire et bouton pour retirer un article */
+.remove-item-form {
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-remove-item {
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: var(--color-text);
+    opacity: 0.25;
+    cursor: pointer;
+    padding: 10px;
+    line-height: 1;
+    transition: opacity 0.2s ease;
+}
+
+.btn-remove-item:hover {
+    opacity: 0.6;
 }

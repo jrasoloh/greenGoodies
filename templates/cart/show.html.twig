@@ -32,6 +32,10 @@
                                 <p class="cart-item-qty">Quantité : {{ item.quantity }}</p>
                                 <p class="cart-item-price">{{ (item.product.price / 100)|number_format(2, ',', '') }}€</p>
                             </div>
+
+                            <form action="{{ path('app_cart_remove', {'id': item.product.id}) }}" method="POST" class="remove-item-form">
+                                <button type="submit" class="btn-remove-item" title="Retirer cet article">×</button>
+                            </form>
                         </div>
                     {% endfor %}
                 </div>

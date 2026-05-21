@@ -65,4 +65,17 @@ class CartService
             'total' => $totalCents / 100
         ];
     }
+
+    // 🎯 Supprimer un produit spécifique du panier
+    public function remove(int $id): void
+    {
+        $session = $this->requestStack->getSession();
+        $cart = $session->get('cart', []);
+
+        if (!empty($cart[$id])) {
+            unset($cart[$id]);
+        }
+
+        $session->set('cart', $cart);
+    }
 }

@@ -634,24 +634,20 @@ footer {
 /* Colonne 1 (N°) */
 .orders-table th:nth-child(1),
 .orders-table td:nth-child(1) {
-    width: 45%;
+    width: 35%;
 }
 
 /* Colonne 2 (Date) */
 .orders-table th:nth-child(2),
 .orders-table td:nth-child(2) {
-    width: 40%;
+    width: 35%;
 }
 
 /* Colonne 3 (Prix) */
-.orders-table th:nth-child(3) {
-    width: 15%;
-    text-align: left;  /* 🎯 L'en-tête "Prix" reste aligné à gauche de sa colonne */
-}
-
+.orders-table th:nth-child(3),
 .orders-table td:nth-child(3) {
-    width: 15%;
-    text-align: right; /* 🎯 Les montants sont propulsés tout à droite du tableau */
+    width: 30%;
+    text-align: right;
 }
 
 /* Le bouton dans les cartes (réutilise la variable --btn-primary-bg) */

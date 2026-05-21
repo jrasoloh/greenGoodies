@@ -660,3 +660,60 @@ footer {
 .account-card .btn-cta {
     width: 479px;
 }
+
+/* Encadré Clé API (Mon compte) */
+.api-key-box {
+    background-color: var(--bg-body);
+    border: 1px dashed var(--color-muted);
+    padding: 16px;
+    margin-bottom: 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.api-key-box:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-color: var(--color-dark);
+}
+
+.api-key-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.api-key-label {
+    font-size: 12px;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.api-key-value {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-dark);
+    word-break: break-all;
+}
+
+/* Le petit badge d'action à droite */
+.api-key-badge {
+    font-size: 12px;
+    color: var(--color-muted);
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+/* État quand la copie a réussi */
+.api-key-badge.success {
+    background-color: #E2F0D9;
+    color: #385723;
+    font-weight: 500;
+}

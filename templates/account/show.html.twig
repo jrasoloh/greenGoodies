@@ -20,7 +20,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {# On boucle sur les commandes de l'utilisateur (si la relation existe dans ton entité) #}
                     {% for order in user.orders %}
                         <tr>
                             <td>{{ '%02d'|format(loop.index) }}</td>
@@ -41,7 +40,17 @@
             {# Bloc 2 : Accès API #}
             <div class="account-card">
                 <h2>Mon accès API</h2>
-                {# On utilise un formulaire POST pour sécuriser le changement d'état #}
+
+                {% if user.isApiKeyActive and user.apiKey %}
+                    <div class="api-key-box" onclick="copyApiKey('{{ user.apiKey }}')" title="Cliquer pour copier la clé API">
+                        <div class="api-key-text">
+                            <span class="api-key-label">Votre clé API :</span>
+                            <code class="api-key-value">{{ user.apiKey }}</code>
+                        </div>
+                        <span class="api-key-badge" id="copy-badge">Cliquer pour copier</span>
+                    </div>
+                {% endif %}
+
                 <form action="{{ path('app_account_api_toggle') }}" method="POST">
                     <button type="submit" class="btn-cta">
                         {{ user.isApiKeyActive ? 'Désactiver mon accès API' : 'Activer mon accès API' }}
@@ -56,6 +65,24 @@
                     <button type="submit" class="btn-cta">Supprimer mon compte</button>
                 </form>
             </div>
+
+            <script>
+                function copyApiKey(key) {
+                    navigator.clipboard.writeText(key).then(() => {
+                        const badge = document.getElementById('copy-badge');
+
+                        badge.innerText = '✓ Copié !';
+                        badge.classList.add('success');
+
+                        setTimeout(() => {
+                            badge.innerText = 'Cliquer pour copier';
+                            badge.classList.remove('success');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Impossible de copier la clé : ', err);
+                    });
+                }
+            </script>
 
         </div>
     </div>

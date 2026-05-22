@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\User;
+use App\Manager\AccountManager;
 use Random\RandomException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[IsGranted('ROLE_USER')]
@@ -27,34 +28,27 @@ class AccountController extends AbstractController
      * @throws RandomException
      */
     #[Route('/api/toggle', name: 'api_toggle', methods: ['POST'])]
-    public function toggleApi(EntityManagerInterface $entityManager): Response
+    public function toggleApi(AccountManager $accountManager): Response
     {
-        /** @var \App\Entity\User $user */
+        /** @var User $user */
         $user = $this->getUser();
 
-        $newState = !$user->isApiKeyActive();
-        $user->setIsApiKeyActive($newState);
-
-        if ($newState && !$user->getApiKey()) {
-            $user->setApiKey(bin2hex(random_bytes(16)));
-        }
-
-        $entityManager->flush();
+        $accountManager->toggleApiKey($user);
 
         return $this->redirectToRoute('app_account_index');
     }
 
     #[Route('/delete', name: 'delete', methods: ['POST'])]
-    public function deleteAccount(EntityManagerInterface $entityManager, Security $security, Request $request): Response
+    public function deleteAccount(AccountManager $accountManager, Security $security, Request $request): Response
     {
-        /** @var \App\Entity\User $user */
+        /** @var User $user */
         $user = $this->getUser();
 
         if ($this->isCsrfTokenValid('delete-account', $request->request->get('_token'))) {
+
             $security->logout(false);
 
-            $entityManager->remove($user);
-            $entityManager->flush();
+            $accountManager->deleteAccount($user);
 
             return $this->redirectToRoute('app_home');
         }

@@ -26,7 +26,6 @@ class AppFixtures extends Fixture
      */
     public function load(ObjectManager $manager): void
     {
-        // 1. Création des Catégories
         $categories = ['Salle de bain', 'Alimentation', 'Accessoires'];
         $categoryEntities = [];
 
@@ -37,7 +36,6 @@ class AppFixtures extends Fixture
             $categoryEntities[$catName] = $category;
         }
 
-        // 2. Création des Produits avec les textes complets
         $productsData = [
             [
                 'name' => "Kit d'hygiène recyclable",
@@ -128,7 +126,6 @@ class AppFixtures extends Fixture
             $productEntities[] = $product;
         }
 
-        // 3. Création de l'utilisateur de test
         $user = new User();
         $user->setEmail('test@test.com');
         $user->setFirstName('John');
@@ -142,7 +139,6 @@ class AppFixtures extends Fixture
 
         $manager->persist($user);
 
-        // 4. Création de l'historique des commandes avec des relations de produits valides
         for ($i = 1; $i <= 3; $i++) {
             $order = new Order();
             $order->setCustomer($user);

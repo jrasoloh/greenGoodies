@@ -44,7 +44,6 @@ class CartService
         foreach ($cart as $id => $quantity) {
             $product = $this->productRepository->find($id);
 
-            // Sécurité : si le produit a été supprimé de la BDD entre temps
             if (!$product) {
                 continue;
             }
@@ -54,7 +53,6 @@ class CartService
                 'quantity' => $quantity
             ];
 
-            // Calcul du total en centimes
             $totalCents += $product->getPrice() * $quantity;
         }
 

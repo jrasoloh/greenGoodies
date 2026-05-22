@@ -9,6 +9,7 @@ use App\Entity\Product;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Random\RandomException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
@@ -20,6 +21,9 @@ class AppFixtures extends Fixture
         $this->passwordHasher = $passwordHasher;
     }
 
+    /**
+     * @throws RandomException
+     */
     public function load(ObjectManager $manager): void
     {
         // 1. Création des Catégories
@@ -130,6 +134,7 @@ class AppFixtures extends Fixture
         $user->setFirstName('John');
         $user->setLastName('Doe');
         $user->setIsApiKeyActive(true);
+        $user->setApiKey('gg_lk_' . bin2hex(random_bytes(16)));
 
         // Mot de passe court "test"
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'test');

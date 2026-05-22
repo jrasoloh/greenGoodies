@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Manager\OrderManager;
+use App\Model\OrderModel;
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,7 +51,9 @@ class CartController extends AbstractController
             return $this->redirectToRoute('app_cart');
         }
 
-        $orderManager->createOrderFromCart($user, $cartData['items']);
+        $orderModel = new OrderModel($cartData['items'], $cartData['total']);
+
+        $orderManager->createOrderFromModel($user, $orderModel);
 
         $cartService->empty();
         $this->addFlash('success', 'Votre commande a été validée avec succès !');

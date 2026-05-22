@@ -5,6 +5,7 @@ namespace App\Manager;
 use App\Entity\Order;
 use App\Entity\OrderLine;
 use App\Entity\User;
+use App\Model\OrderModel;
 use Doctrine\ORM\EntityManagerInterface;
 
 class OrderManager
@@ -16,7 +17,7 @@ class OrderManager
         $this->entityManager = $entityManager;
     }
 
-    public function createOrderFromCart(User $user, array $cartItems): void
+    public function createOrderFromModel(User $user, OrderModel $orderModel): void
     {
         $order = new Order();
         $order->setCustomer($user);
@@ -26,7 +27,7 @@ class OrderManager
 
         $this->entityManager->persist($order);
 
-        foreach ($cartItems as $item) {
+        foreach ($orderModel->getItems() as $item) {
             $product = $item['product'];
 
             $orderLine = new OrderLine();

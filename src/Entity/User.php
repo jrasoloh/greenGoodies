@@ -61,6 +61,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var Collection<int, Order>
      */
     #[ORM\OneToMany(targetEntity: Order::class, mappedBy: 'customer', orphanRemoval: true)]
+    #[ORM\OrderBy(['createdAt' => 'DESC'])]
     private Collection $orders;
 
     public function __construct()
@@ -103,10 +104,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
-
-        if ($this->isApiKeyActive()) {
-            $roles[] = 'ROLE_API';
-        }
 
         return array_unique($roles);
     }

@@ -3,16 +3,13 @@
 namespace App\Manager;
 
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserRepository;
 use Random\RandomException;
 
 class AccountManager
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(private readonly UserRepository $userRepository)
     {
-        $this->entityManager = $entityManager;
     }
 
     /**
@@ -28,7 +25,7 @@ class AccountManager
             $user->setApiKey('gg_lk_' . bin2hex(random_bytes(16)));
         }
 
-        $this->entityManager->flush();
+        $this->userRepository->save();
     }
 
     /**
@@ -36,7 +33,6 @@ class AccountManager
      */
     public function deleteAccount(User $user): void
     {
-        $this->entityManager->remove($user);
-        $this->entityManager->flush();
+        $this->userRepository->remove($user);
     }
 }

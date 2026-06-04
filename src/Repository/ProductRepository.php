@@ -7,10 +7,11 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Product>
+ * @extends \Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository<Product>
  */
 class ProductRepository extends ServiceEntityRepository
 {
+    use RepositoryPersistenceTrait;
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Product::class);

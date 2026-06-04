@@ -132,6 +132,7 @@ class AppFixtures extends Fixture
         $user->setLastName('Doe');
         $user->setIsApiKeyActive(true);
         $user->setApiKey('gg_lk_' . bin2hex(random_bytes(16)));
+        $user->setRoles(['ROLE_API']);
 
         // Mot de passe court "test"
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'test');

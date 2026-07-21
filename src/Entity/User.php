@@ -105,6 +105,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $roles = $this->roles;
         $roles[] = 'ROLE_USER';
 
+        if ($this->isApiKeyActive()) {
+            $roles[] = 'ROLE_API';
+        }
+
         return array_unique($roles);
     }
 

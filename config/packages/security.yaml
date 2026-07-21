@@ -20,7 +20,6 @@ security:
         login:
             pattern: ^/api/login
             stateless: true
-            user_checker: App\Security\ApiUserChecker
             json_login:
                 check_path: /api/login_check
                 success_handler: lexik_jwt_authentication.handler.authentication_success
@@ -29,7 +28,6 @@ security:
         api:
             pattern: ^/api
             stateless: true
-            user_checker: App\Security\ApiUserChecker
             jwt: ~
 
         main:
@@ -58,7 +56,7 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/login_check, roles: PUBLIC_ACCESS }
-        - { path: ^/api, roles: ROLE_USER }
+        - { path: ^/api, roles: ROLE_API }
 
 when@test:
     security:

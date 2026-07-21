@@ -6,15 +6,16 @@ use App\Entity\Order;
 use App\Entity\OrderLine;
 use App\Entity\User;
 use App\Model\OrderModel;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\OrderLineRepository;
+use App\Repository\OrderRepository;
 
 class OrderManager
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(
+        private readonly OrderRepository $orderRepository,
+        private readonly OrderLineRepository $orderLineRepository
+    )
     {
-        $this->entityManager = $entityManager;
     }
 
     public function createOrderFromModel(User $user, OrderModel $orderModel): void
@@ -25,7 +26,7 @@ class OrderManager
         $order->setStatus('VALIDATED');
         $order->setCreatedAt(new \DateTimeImmutable());
 
-        $this->entityManager->persist($order);
+        $this->orderRepository->persist($order);
 
         foreach ($orderModel->getItems() as $item) {
             $product = $item['product'];
@@ -37,9 +38,10 @@ class OrderManager
             $orderLine->setProductPrice($product->getPrice());
             $orderLine->setQuantity($item['quantity']);
 
-            $this->entityManager->persist($orderLine);
+            $this->orderLineRepository->persist($orderLine);
         }
 
-        $this->entityManager->flush();
+        $this->orderLineRepository->save();
+        $this->orderRepository->save();
     }
 }

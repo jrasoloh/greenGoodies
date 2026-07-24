@@ -18,7 +18,7 @@
 
             {# Panneau Droit #}
             <div class="split-image hero-right">
-                <img src="{{ asset('images/bienvenue.png') }}" alt="Affiche éco-responsable">
+                <img src="{{ asset('images/bienvenue.png') }}" alt="Affiche éco-responsable" loading="eager" fetchpriority="high">
             </div>
 
         </div>
@@ -33,7 +33,7 @@
                 <article class="product-card">
                     <div class="product-image-wrapper">
                         {% if product.picture %}
-                            <img src="{{ asset('uploads/products/' ~ product.picture) }}" alt="{{ product.name }}">
+                            <img src="{{ asset('uploads/products/' ~ product.picture) }}" alt="{{ product.name }}" loading="lazy">
                         {% endif %}
                     </div>
 
@@ -70,14 +70,14 @@
         <div class="triple-empty-col"></div>
 
         <div class="triple-img-col">
-            <img src="{{ asset('images/convictions.png') }}" alt="Plante au naturel">
+            <img src="{{ asset('images/convictions.png') }}" alt="Plante au naturel" loading="lazy">
         </div>
     </section>
 
     {# SECTION 4 : NOS VALEURS #}
     <section class="triple-section" style="background-color: var(--bg-valeurs);">
         <div class="triple-img-col">
-            <img src="{{ asset('images/valeurs.png') }}" alt="Sacs biodégradables">
+            <img src="{{ asset('images/valeurs.png') }}" alt="Sacs biodégradables" loading="lazy">
         </div>
 
         <div class="triple-empty-col"></div>

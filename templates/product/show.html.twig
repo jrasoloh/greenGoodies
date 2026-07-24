@@ -8,7 +8,7 @@
         {# Panneau Gauche : L'image contrainte à 734x686 #}
         <div class="product-detail-image">
             {% if product.picture %}
-                <img src="{{ asset('uploads/products/' ~ product.picture) }}" alt="{{ product.name }}">
+                <img src="{{ asset('uploads/products/' ~ product.picture) }}" alt="{{ product.name }}" loading="lazy">
             {% endif %}
         </div>
 

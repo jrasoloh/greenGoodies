@@ -1,0 +1,122 @@
+{
+  "info": {
+    "_postman_id": "60247ea7-b35f-4d06-b72f-ec0d9616ab0b",
+    "name": "GreenGoodies",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "30290016"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// Vérifie si la requête a réussi (code 200)",
+              "if (pm.response.code === 200) {",
+              "    // Récupère le contenu JSON",
+              "    var jsonData = pm.response.json();",
+              "    // Sauvegarde le token dans une variable d'environnement 'jwt_token'",
+              "    pm.environment.set(\"jwt_token\", jsonData.token);",
+              "    console.log(\"Token mis à jour !\");",
+              "}",
+              "// 2. Si la requête échoue (401, 403...), on nettoie direct pour la sécurité ",
+              "else {",
+              "    // On vide la variable d'environnement",
+              "    pm.environment.set(\"jwt_token\", \"\");",
+              "    ",
+              "    console.warn(\"Échec de connexion : L'ancienne clé a été vidée par sécurité.\");",
+              "}"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Cookie",
+            "value": "XDEBUG_SESSION=PHPSTORM",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"test@test.com\",\n    \"password\": \"test\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/login_check",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "login_check"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get all products",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/products",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "products"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

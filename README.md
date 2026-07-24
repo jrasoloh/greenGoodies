@@ -88,6 +88,28 @@ curl http://localhost:8000/api/products \
   -H "Authorization: Bearer <token>"
 ```
 
+## 📮 Postman
+
+Une collection et un environnement Postman sont fournis dans le dossier `postman/` pour tester l'API rapidement :
+
+| Fichier                                      | Rôle                                          |
+|----------------------------------------------|-----------------------------------------------|
+| `GreenGoodies.postman_collection.json`       | Requêtes de l'API (`Auth`, `Get all products`) |
+| `GreenGoodies.postman_environment.json`      | Variables d'environnement (`base_url`, `jwt_token`) |
+
+### Utilisation
+
+1. Importer les deux fichiers dans Postman (**Import**).
+2. Sélectionner l'environnement **GreenGoodies** et renseigner `base_url` (ex. `http://localhost:8000`).
+3. Lancer la requête **Auth** (`POST {{base_url}}/api/login_check`) avec les identifiants de test
+   (`test@test.com` / `test`). Le token JWT est automatiquement stocké dans la variable
+   `jwt_token` via le script de test.
+4. Lancer **Get all products** (`GET {{base_url}}/api/products`) : le token est injecté
+   automatiquement dans l'en-tête `Authorization: Bearer`.
+
+> ℹ️ En cas d'échec d'authentification (401/403), la variable `jwt_token` est vidée
+> automatiquement par sécurité.
+
 ## 🛠️ Stack technique
 
 | Composant       | Technologie                  |
@@ -98,7 +120,13 @@ curl http://localhost:8000/api/products \
 | Assets         | Symfony Asset Mapper         |
 | Auth API       | Lexik JWT Authentication     |
 
+## 👤 Auteur
+
+Jossy Rasoloharijaona
+
 ## 📄 Licence
 
-Propriétaire.
+Logiciel propriétaire — tous droits réservés.
+
+© 2026 Jossy Rasoloharijaona
 

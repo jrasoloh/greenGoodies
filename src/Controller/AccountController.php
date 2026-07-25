@@ -28,12 +28,16 @@ class AccountController extends AbstractController
      * @throws RandomException
      */
     #[Route('/api/toggle', name: 'api_toggle', methods: ['POST'])]
-    public function toggleApi(AccountManager $accountManager): Response
+    public function toggleApi(AccountManager $accountManager, Security $security): Response
     {
         /** @var User $user */
         $user = $this->getUser();
 
         $accountManager->toggleApiKey($user);
+
+        // Les rôles de l'utilisateur changent (ROLE_API ajouté/retiré) : on rafraîchit
+        // le token de sécurité pour éviter que Symfony n'invalide la session (déconnexion).
+        $security->login($user, firewallName: 'main');
 
         return $this->redirectToRoute('app_account_index');
     }

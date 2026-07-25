@@ -132,7 +132,8 @@ class AppFixtures extends Fixture
         $user->setLastName('Doe');
         $user->setIsApiKeyActive(true);
         $user->setApiKey('gg_lk_' . bin2hex(random_bytes(16)));
-        $user->setRoles(['ROLE_API']);
+        // ROLE_API est dérivé dynamiquement de isApiKeyActive dans User::getRoles(),
+        // il ne faut donc pas le stocker en dur dans la colonne roles.
 
         // Mot de passe court "test"
         $hashedPassword = $this->passwordHasher->hashPassword($user, 'test');

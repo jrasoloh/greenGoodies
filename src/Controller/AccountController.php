@@ -48,15 +48,17 @@ class AccountController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        if ($this->isCsrfTokenValid('delete-account', $request->request->get('_token'))) {
-
-            $security->logout(false);
-
-            $accountManager->deleteAccount($user);
-
-            return $this->redirectToRoute('app_home');
+        if (!$this->isCsrfTokenValid('delete-account', $request->request->get('_token'))) {
+            return $this->redirectToRoute('app_account_index');
         }
 
-        return $this->redirectToRoute('app_account_index');
+        $accountManager->deleteAccount($user);
+
+        $security->logout(false);
+
+        $response = $this->redirectToRoute('app_home');
+        $response->headers->clearCookie('REMEMBERME', '/');
+
+        return $response;
     }
 }
